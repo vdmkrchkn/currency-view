@@ -1,0 +1,11 @@
+#container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 70vw;
+    padding: 4px;
+}
+
+.v-margin {
+    margin: 5px 0;
+}

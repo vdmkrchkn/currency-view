@@ -1,24 +1,19 @@
 import React from 'react';
 
-import CurrencyView from "./components/currencyView";
+import Header from './components/Header';
+import CurrencyView from "./components/CurrencyView";
+import Footer from './components/Footer';
 
 import './App.css';
 
-function App() {
+const App = () => {
+  const currencies = ['usd', 'eur'];
+
   return (
     <div className="App">
-      <header>Currencies view</header>
-      <CurrencyView currencies={['usd', 'eur']} periodFrom='2020-06-22' rateInterval={60 * 1000} />
-      <footer className="App-footer">
-        <a
-          className="App-link"
-          href="https://github.com/vdmkrchkn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See my repos at github
-        </a>
-      </footer>
+      <Header />
+      <CurrencyView currencies={currencies} />
+      <Footer />
     </div>
   );
 }

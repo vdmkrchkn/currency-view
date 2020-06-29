@@ -1,9 +1,8 @@
 import React from 'react';
 
-import './tableView.css';
+import './table.css';
 
-// max количество строк табл - pagination?
-const TableView = ({data, fields}) => (
+const Table = ({data, fields, maxRows}) => (
     <div className="table-container">
         <table border="1">
             <thead>
@@ -12,7 +11,7 @@ const TableView = ({data, fields}) => (
                 </tr>
             </thead>
             <tbody>
-                {data.map(elem => (
+                {data.slice(0, maxRows).map(elem => (
                     <tr key={elem[fields[0]]}>
                         {fields.map(field => (<td key={elem[fields[0]] + field}>{elem[field]}</td>))}
                     </tr>
@@ -22,4 +21,4 @@ const TableView = ({data, fields}) => (
     </div>
 );
 
-export default TableView;
+export default Table;
