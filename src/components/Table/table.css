@@ -1,4 +1,34 @@
 .table-container {
-    display: flex;
-    padding: 2px;
+    width: 40vmax;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+    width: 40%;
+}
+
+thead th:nth-child(2) {
+    width: 30%;
+}
+
+thead th:nth-child(3) {
+    width: 30%;
+}
+
+th, td {
+    padding: 4px;
+    border: 1px dashed #666
+}
+
+th {
+    letter-spacing: 2px;
+}
+
+td {
+    letter-spacing: 1px;
+}
+
+tbody td {
+    text-align: center;
 }

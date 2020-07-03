@@ -9,22 +9,20 @@ interface ITableProps {
 }
 
 const Table = ({data, fields, maxRows}: ITableProps) => (
-  <div className="table-container">
-    <table>
-      <thead>
-        <tr>
-          {fields.map(field => (<th key={field}>{field}</th>))}
+  <table className="table-container">
+    <thead>
+      <tr>
+        {fields.map(field => (<th key={field}>{field}</th>))}
+      </tr>
+    </thead>
+    <tbody>
+      {data.slice(0, maxRows).map(elem => (
+        <tr key={elem[fields[0]]}>
+          {fields.map(field => (<td key={elem[fields[0]] + field}>{elem[field]}</td>))}
         </tr>
-      </thead>
-      <tbody>
-        {data.slice(0, maxRows).map(elem => (
-          <tr key={elem[fields[0]]}>
-            {fields.map(field => (<td key={elem[fields[0]] + field}>{elem[field]}</td>))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+      ))}
+    </tbody>
+  </table>
 );
 
 export default Table;
