@@ -7,21 +7,31 @@ import {getCurrencyRates} from 'api';
 
 import './currencyView.css';
 
+interface IProps {
+  currencies: string[];
+}
+
+interface IState {
+  data: any;
+}
+
 /**
  * Component for rendering currency rates data.
  */
-class CurrencyView extends React.Component {
+class CurrencyView extends React.Component<IProps, IState> {
+  timerID!: NodeJS.Timeout;
   /**
    * @constructor
    * @param {any} props - component's props.
    */
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       data: {},
     };
   }
 
+  // eslint-disable-next-line require-jsdoc
   componentDidMount() {
     const {currencies} = this.props;
     // request historical rates 4 testing
@@ -32,25 +42,25 @@ class CurrencyView extends React.Component {
     }
 
     this.timerID = setInterval(
-        () => this.tick(currencies),
-        process.env.REACT_APP_FETCH_INTERVAL,
+        () => {
+          getCurrencyRates(currencies)
+              .then(data => {
+                if (!(Object.keys(data)[0] in this.state.data)) {
+                  this.setState(state => ({...state, data}));
+                }
+              })
+              .catch(error => console.error(error.message));
+        },
+        process.env.REACT_APP_FETCH_INTERVAL ? parseInt(process.env.REACT_APP_FETCH_INTERVAL) : 10000,
     );
   }
 
+  // eslint-disable-next-line require-jsdoc
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  tick(currencies) {
-    getCurrencyRates(currencies)
-        .then(data => {
-          if (!(Object.keys(data)[0] in this.state.data)) {
-            this.setState(state => ({...state, data}));
-          }
-        })
-        .catch(error => console.error(error.message));
-  }
-
+  // eslint-disable-next-line require-jsdoc
   render() {
     const {data} = this.state;
     const dates = Object.keys(data);

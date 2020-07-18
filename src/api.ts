@@ -23,11 +23,11 @@ const transform = (data: ICurrencyRateData) => {
  * Requests currency rates for up to 90 days. Above that, it starts sampling by week or month based on the
  * breadth of the date range (https://www.frankfurter.app/docs/).
  * @param {string[]} currencies - collection of currencies.
- * @param {string} [periodFrom] - period of start.
+ * @param {string | undefined} [periodFrom] - period of start.
  * @param {string} [periodTo] - period of end. If is not provided, it'd request data up to the present.
  * @return {Promise} promise with data.
 */
-const getCurrencyRates = async (currencies: string[], periodFrom: string, periodTo: string = ''): Promise<any> => {
+const getCurrencyRates = async (currencies: string[], periodFrom?: string, periodTo: string = ''): Promise<any> => {
   if (currencies && currencies.length) {
     let range = 'latest';
     if (periodFrom) {
