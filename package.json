@@ -2,6 +2,7 @@
   "name": "currency-view",
   "version": "1.0.2",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -11,14 +12,20 @@
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "@types/recharts": "^1.8.13",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "winston": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:proxy": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "node_modules/.bin/eslint src/",

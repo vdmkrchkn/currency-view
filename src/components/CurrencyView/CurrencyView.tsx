@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Table from 'components/Table';
 import Chart from 'components/Chart';
 
-import {getCurrencyRates} from 'api';
+import getCurrencyRates from 'api';
 
 import './currencyView.css';
 
