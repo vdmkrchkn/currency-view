@@ -2,12 +2,12 @@ import React from 'react';
 
 import logo from 'logo.svg';
 
-import './header.css';
+import './header.scss';
 
 const Header: React.FunctionComponent = ({children}) => (
-  <header>
-    <img src={logo} className="header-logo" alt="CurrencyView logo" />
-    <div className="header-title">Currencies view</div>
+  <header className="header">
+    <img src={logo} className="header__logo" alt="CurrencyView logo" />
+    <div className="header__title">Currencies view</div>
     {children}
   </header>
 );

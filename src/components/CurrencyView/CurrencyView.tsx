@@ -4,7 +4,7 @@ import Chart from 'components/Chart';
 
 import {getCurrencyRates} from 'api';
 
-import './currencyView.css';
+import './currencyView.scss';
 
 interface IProps {
   currencies: string[];
@@ -61,7 +61,7 @@ export default ({currencies}: IProps) => {
     });
 
     return (
-      <div id="container">
+      <div className="currencyView">
         <Table fields={fields} data={[...renderData].reverse()} maxRows={5} />
         <Chart xAxisDataKey={fields[0]} data={renderData} />
       </div>

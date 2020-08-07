@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './table.css';
+import './table.scss';
 
 interface ITableProps {
   data: any[],
@@ -9,7 +9,7 @@ interface ITableProps {
 }
 
 const Table = ({data, fields, maxRows}: ITableProps) => (
-  <table className="table-container">
+  <table className="table">
     <thead>
       <tr>
         {fields.map(field => (<th key={field}>{field}</th>))}

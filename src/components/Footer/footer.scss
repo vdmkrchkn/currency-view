@@ -1,12 +1,12 @@
-footer {
+.footer {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     background-color:#41444a;
-}
 
-.footer-link {
-    color: #61dafb;
-    font-size: .8em;
+    &__link {
+        color: #61dafb;
+        font-size: .8em;
+    }
 }
