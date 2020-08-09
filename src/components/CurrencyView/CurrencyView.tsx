@@ -22,7 +22,11 @@ export default ({currencies}: IProps) => {
   useEffect(() => {
     // request historical rates 4 testing
     if (process.env.NODE_ENV !== 'production') {
-      getCurrencyRates(currencies, process.env.REACT_APP_FETCH_FROM)
+      const period = {
+        periodFrom: process.env.REACT_APP_FETCH_FROM,
+      };
+
+      getCurrencyRates(currencies, period)
           .then(data => setState({data}))
           .catch(error => console.error(error.message));
     }

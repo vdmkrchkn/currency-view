@@ -48,7 +48,11 @@ app.post('/', function(request, response) {
 
   let range = 'latest';
   if (periodFrom) {
-    range = `${periodFrom}..${periodTo}`;
+    range = `${periodFrom}..`;
+  }
+
+  if (periodTo) {
+    range += periodTo;
   }
 
   const url = `https://api.frankfurter.app/${range}?to=RUB`;

@@ -1,8 +1,12 @@
-const getCurrencyRates = (currencies: string[], periodFrom?: string, periodTo: string = '') => {
+interface IPeriod {
+  periodFrom?: string,
+  periodTo?: string,
+}
+
+const getCurrencyRates = (currencies: string[], period?: IPeriod): Promise<any> => {
   const params = {
     currencies,
-    periodFrom,
-    periodTo,
+    ...period,
   };
 
   return fetch('/', {
