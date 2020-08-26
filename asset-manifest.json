@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/currency-view/static/css/main.d61e84b1.chunk.css",
+    "main.js": "/currency-view/static/js/main.5d6e24e7.chunk.js",
+    "main.js.map": "/currency-view/static/js/main.5d6e24e7.chunk.js.map",
+    "runtime-main.js": "/currency-view/static/js/runtime-main.62dc1a2d.js",
+    "runtime-main.js.map": "/currency-view/static/js/runtime-main.62dc1a2d.js.map",
+    "static/js/2.9e014fbb.chunk.js": "/currency-view/static/js/2.9e014fbb.chunk.js",
+    "static/js/2.9e014fbb.chunk.js.map": "/currency-view/static/js/2.9e014fbb.chunk.js.map",
+    "index.html": "/currency-view/index.html",
+    "precache-manifest.8bb39da6915f8542efe7e9419bd82b9a.js": "/currency-view/precache-manifest.8bb39da6915f8542efe7e9419bd82b9a.js",
+    "service-worker.js": "/currency-view/service-worker.js",
+    "static/css/main.d61e84b1.chunk.css.map": "/currency-view/static/css/main.d61e84b1.chunk.css.map",
+    "static/js/2.9e014fbb.chunk.js.LICENSE.txt": "/currency-view/static/js/2.9e014fbb.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/currency-view/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.62dc1a2d.js",
+    "static/js/2.9e014fbb.chunk.js",
+    "static/css/main.d61e84b1.chunk.css",
+    "static/js/main.5d6e24e7.chunk.js"
+  ]
+}
