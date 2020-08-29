@@ -46,26 +46,30 @@ app.post('/', function(request, response) {
 
   const {currencies, periodFrom, periodTo} = request.body;
 
-  let range = 'latest';
-  if (periodFrom) {
-    range = `${periodFrom}..`;
+  if (currencies.length == 0) {
+    response.status(404).send({error: 'a collection of currencies is not set'});
+  } else {
+    let range = 'latest';
+    if (periodFrom) {
+      range = `${periodFrom}..`;
+    }
+
+    if (periodTo) {
+      range += periodTo;
+    }
+
+    const url = `https://api.frankfurter.app/${range}?to=RUB`;
+    const requests = currencies.map(currency =>
+      fetch(url + `&from=${currency}`, {
+        method: 'GET',
+      }),
+    );
+
+    Promise.all(requests)
+        .then(responses =>
+          Promise.all(responses.map(response => response.json()))
+              .then(data => response.send(mergeArrays(data.map(transform), currencies))));
   }
-
-  if (periodTo) {
-    range += periodTo;
-  }
-
-  const url = `https://api.frankfurter.app/${range}?to=RUB`;
-  const requests = currencies.map(currency =>
-    fetch(url + `&from=${currency}`, {
-      method: 'GET',
-    }),
-  );
-
-  Promise.all(requests)
-      .then(responses =>
-        Promise.all(responses.map(response => response.json()))
-            .then(data => response.send(mergeArrays(data.map(transform), currencies))));
 });
 
 const port = 3001; // FIXME: to config
