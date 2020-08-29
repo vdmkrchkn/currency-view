@@ -1,9 +1,9 @@
 import {actionTypes} from './currencyView.constants';
 
 interface IState {
+  currencies: string[],
   data: any;
   isLoading: boolean;
-  error: string;
 }
 
 interface IAction {
@@ -17,12 +17,9 @@ const reducer = (state: IState, action: IAction): IState => {
       return {...state, data: action.payload};
     }
     case actionTypes.UPDATE_DATA: {
-      const {data, isLoading, error} = state;
+      const {data, ...rest} = state;
 
-      return {'data': {...data, ...action.payload}, isLoading, error};
-    }
-    case actionTypes.SET_ERROR: {
-      return {...state, error: action.payload};
+      return {'data': {...data, ...action.payload}, ...rest};
     }
     case actionTypes.SET_LOADING: {
       return {...state, isLoading: action.payload};

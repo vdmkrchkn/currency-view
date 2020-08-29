@@ -15,7 +15,13 @@ const getCurrencyRates = (currencies: string[], period?: IPeriod): Promise<any> 
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  }).then(response => response.json());
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error(`Service unavailable (code ${response.status})`);
+    }
+  });
 };
 
 export default getCurrencyRates;

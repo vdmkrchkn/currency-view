@@ -1,4 +1,5 @@
 import React, {useReducer, useEffect} from 'react';
+
 import Table from 'components/Table';
 import Chart from 'components/Chart';
 
@@ -9,17 +10,17 @@ import reducer from './currencyView.reducer';
 import './currencyView.css';
 
 interface IProps {
-  currencies: string[];
+  onError: any;
 }
 
 const initialState = {
+  currencies: ['usd', 'eur'],
   data: {},
   isLoading: false,
-  error: '',
 };
 
-export default ({currencies}: IProps) => {
-  const [{data}, dispatch] = useReducer(reducer, initialState);
+export default ({onError}: IProps) => {
+  const [{data, currencies}, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     // request historical rates 4 testing
@@ -36,7 +37,7 @@ export default ({currencies}: IProps) => {
             dispatch({type: actionTypes.SET_LOADING, payload: false});
           })
           .catch(error => {
-            dispatch({type: actionTypes.SET_ERROR, payload: error.message});
+            onError(error.message);
             dispatch({type: actionTypes.SET_LOADING, payload: false});
           });
     }
@@ -50,7 +51,7 @@ export default ({currencies}: IProps) => {
                   dispatch({type: actionTypes.UPDATE_DATA, payload: rates});
                 }
               })
-              .catch(error => dispatch({type: actionTypes.SET_ERROR, payload: error.message}));
+              .catch(error => onError(error.message));
         },
         REACT_APP_FETCH_INTERVAL ? parseInt(REACT_APP_FETCH_INTERVAL) : 10000,
     );
