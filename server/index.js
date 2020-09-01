@@ -72,7 +72,7 @@ app.post('/', function(request, response) {
   }
 });
 
-const port = 3001; // FIXME: to config
+const port = process.env.PROXY_PORT;
 if (port) {
   app.listen(port, () => log.info(`proxy server has started at localhost:${port}`));
 } else {

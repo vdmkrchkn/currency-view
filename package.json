@@ -16,6 +16,7 @@
     "@types/recharts": "^1.8.13",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:proxy": "node server/index.js",
+    "start:proxy": "cross-env PROXY_PORT=3001 node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "node_modules/.bin/eslint src/",
