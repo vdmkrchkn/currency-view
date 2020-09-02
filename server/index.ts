@@ -1,15 +1,22 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import fetch from 'node-fetch';
 
-const log = require('./log');
+import log from './log';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const transform = data => {
+interface ICurrencyRateData {
+  amount: number;
+  base: string;
+  date?: string;
+  rates: any;
+}
+
+const transform = (data: ICurrencyRateData) => {
   const {date, rates} = data;
   const base = data.base.toLowerCase();
 
@@ -29,7 +36,7 @@ const transform = data => {
  * @param {string[]} keys - a collection of keys in object values.
  * @return {Object | undefined} merged object.
 */
-const mergeArrays = (array, keys) => {
+const mergeArrays = (array: any[], keys: string[]): object | undefined => {
   const data = array.shift();
   // reduce?
   data && array.forEach((elem, i) => {
@@ -41,7 +48,7 @@ const mergeArrays = (array, keys) => {
   return data;
 };
 
-app.post('/', function(request, response) {
+app.post('/', function(request: any, response: any) {
   log.info(`Request ${request.url} with body ${JSON.stringify(request.body)}`);
 
   const {currencies, periodFrom, periodTo} = request.body;
@@ -59,7 +66,7 @@ app.post('/', function(request, response) {
     }
 
     const url = `https://api.frankfurter.app/${range}?to=RUB`;
-    const requests = currencies.map(currency =>
+    const requests = currencies.map((currency: any) =>
       fetch(url + `&from=${currency}`, {
         method: 'GET',
       }),
@@ -67,7 +74,7 @@ app.post('/', function(request, response) {
 
     Promise.all(requests)
         .then(responses =>
-          Promise.all(responses.map(response => response.json()))
+          Promise.all(responses.map((response: any) => response.json()))
               .then(data => response.send(mergeArrays(data.map(transform), currencies))));
   }
 });
