@@ -1,3 +1,3 @@
-import Module from './Table';
+import Module from './MUITable';
 
 export default Module;

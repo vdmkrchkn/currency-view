@@ -62,7 +62,7 @@ export default ({currencies}: IProps) => {
 
     return (
       <div className="currencyView">
-        <Table fields={fields} data={[...renderData].reverse()} maxRows={5} />
+        <Table fields={fields} data={[...renderData].reverse()} />
         <Chart xAxisDataKey={fields[0]} data={renderData} />
       </div>
     );
