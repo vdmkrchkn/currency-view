@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:proxy": "cross-env PROXY_PORT=3001 ts-node server/index.ts",
+    "start:proxy": "cross-env PROXY_PORT=3001 ts-node -P tsconfig.node.json server/index.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "node_modules/.bin/eslint src/ server/",
