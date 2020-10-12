@@ -6,26 +6,11 @@ import {ApolloServer} from 'apollo-server-express';
 
 import log from './log';
 import typeDefs from './schemas/schema';
+import resolvers from './resolvers';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-
-const users = [
-  {id: 1, name: 'John Doe', email: 'john@gmail.com', age: 22},
-  {id: 2, name: 'Jane Doe', email: 'jane@gmail.com', age: 23},
-];
-
-const resolvers = {
-  Query: {
-    user: (parent: any, {id}: any, context: any, info: any) => {
-      return users.find(user => user.id === id);
-    },
-    users: (parent: any, args: any, context: any, info: any) => {
-      return users;
-    },
-  },
-};
 
 const server = new ApolloServer({typeDefs, resolvers});
 server.applyMiddleware({app});
